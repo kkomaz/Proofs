@@ -125,8 +125,8 @@ export default class Login extends Component {
                               No Tracking
                             </h5>
                             <Icon
-                              className="icon-pencil"
-                              icon="IconPencil"
+                              className="icon-pencil ml-one"
+                              icon="IconEye"
                               onClick={this.openNameModal}
                               size={28}
                             />
@@ -142,7 +142,7 @@ export default class Login extends Component {
                             </h5>
                             <Icon
                               className="icon-pencil"
-                              icon="IconPencil"
+                              icon="IconPower"
                               onClick={this.openNameModal}
                               size={28}
                             />
