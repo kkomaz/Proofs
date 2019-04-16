@@ -33,18 +33,18 @@ export class NavbarComp extends Component {
     this.setState({ open: !this.state.open })
   }
 
-  goToAdminPosts = () => {
+  goToAdminPage = () => {
     const { history } = this.props
     const { user } = this.state
 
-    return history.push(`/admin/${user.username}/posts`)
+    return history.push(`/app/${user.username}`)
   }
 
-  goToAdminProfile = () => {
+  goToPublicPage = () => {
     const { history } = this.props
     const { user } = this.state
 
-    return history.push(`/admin/${user.username}`)
+    return history.push(`/${user.username}`)
   }
 
   render() {
@@ -71,8 +71,11 @@ export class NavbarComp extends Component {
             {
               isSignedIn &&
               <React.Fragment>
-                <Navbar.Item onClick={this.goToAdminProfile}>
-                  My Public Page
+                <Navbar.Item onClick={this.goToAdminPage}>
+                  Admin Page
+                </Navbar.Item>
+                <Navbar.Item onClick={this.goToPublicPage}>
+                  Public Page
                 </Navbar.Item>
                 <Navbar.Item onClick={this.handleSignOut}>
                   Sign Out

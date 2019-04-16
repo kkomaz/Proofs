@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import UserProvider from 'components/User/UserProvider'
 import Loader from 'components/Loader'
 import AdminUser from 'components/AdminUser'
+import User from 'components/User'
 
 class Routes extends Component {
   state = { user: {} }
@@ -40,7 +41,9 @@ class Routes extends Component {
           />
           <Route
             path="/:username"
-            render={({ match }) => <div>Hello World</div>}
+            render={({ match }) =>
+              <User match={match} />
+            }
           />
         </Switch>
       </UserProvider>
