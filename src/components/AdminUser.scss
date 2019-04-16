@@ -1,4 +1,14 @@
 .admin-user {
+  &__image {
+    &--hovered {
+      opacity: 0.7;
+    }
+
+    &--clickable {
+      cursor: pointer !important;
+    }
+  }
+
   &__name,
   &__description,
   &__footer {

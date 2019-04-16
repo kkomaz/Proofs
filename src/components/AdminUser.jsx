@@ -9,6 +9,8 @@ import { Input } from 'react-bulma-components/lib/components/form'
 import Section from 'react-bulma-components/lib/components/section';
 import Button from 'react-bulma-components/lib/components/button'
 import { withRouter } from 'react-router-dom'
+import classNames from 'classnames'
+import Image from 'react-bulma-components/lib/components/image'
 import './AdminUser.scss'
 
 const usernameExists = (accounts, service) => {
@@ -24,11 +26,14 @@ class AdminUser extends Component {
     name: '',
     inputName: '',
     inputDescription: '',
+    inputImgUrl: '',
+    imgHovered: false,
     currentProofIdentity: '',
     currentProofType: '',
     showNameModal: false,
     showDescriptionModal: false,
     showProofModal: false,
+    showImageModal: false,
     loading: true,
   }
 
@@ -59,6 +64,7 @@ class AdminUser extends Component {
         accounts,
         description: '',
         imgUrl,
+        inputImgUrl: imgUrl,
         name: _.get(userData, 'profile.name', ''),
         inputName: _.get(userData, 'profile.name', ''),
         inputDescription: '',
@@ -69,18 +75,28 @@ class AdminUser extends Component {
 
       this.setState(params)
     } else {
-      const { accounts, description, imgUrl, name, inputName, inputDescription } = JSON.parse(identity)
+      const { accounts, description, imgUrl, name, inputName, inputDescription, inputImgUrl } = JSON.parse(identity)
       this.setState({
         accounts,
         description,
-        imgUrl,
         name,
+        imgUrl,
+        inputImgUrl,
         inputName,
         inputDescription,
         loading: false,
       })
     }
   }
+
+  setImageHoveredTrue = () => {
+    this.setState({ imgHovered: true })
+  }
+
+  setImageHoveredFalse = () => {
+    this.setState({ imgHovered: false })
+  }
+
 
   onCancelNameChange = () => {
     this.setState({
@@ -214,6 +230,49 @@ class AdminUser extends Component {
     })
   }
 
+  onCancelImageChange = () => {
+    this.setState({
+      inputImgUrl: this.state.name
+    })
+    this.closeImageModal()
+  }
+
+  closeImageModal = () => {
+    this.setState({ showImageModal: false })
+  }
+
+  openImageModal = () => {
+    this.setState({ showImageModal: true })
+  }
+
+  onImageChange = (e) => {
+    this.setState({ inputImgUrl: e.target.value })
+  }
+
+  updateImage = async (e) => {
+    e.preventDefault()
+    const { currentUser } = this.context.state
+    const options = { encrypt: false }
+
+    await currentUser.userSession.putFile('identity-profile.json', JSON.stringify(this.state), options)
+    this.closeImageModal()
+  }
+
+  storeFile = (event) => {
+    event.preventDefault();
+    const file = event.target.files[0];
+
+    const reader = new window.FileReader();
+    reader.readAsArrayBuffer(file);
+
+    return reader.onloadend = () => {
+      return this.setState({
+        imgUrl: `data:image/jpeg;base64,${Buffer(reader.result).toString("base64")}`,
+        inputImgUrl: `data:image/jpeg;base64,${Buffer(reader.result).toString("base64")}`
+      })
+    };
+  };
+
   render() {
     const {
       accounts,
@@ -223,10 +282,23 @@ class AdminUser extends Component {
       showNameModal,
       showDescriptionModal,
       showProofModal,
+      showImageModal,
       loading,
     } = this.state
 
     const services = _.map(accounts, 'service')
+
+    const imageClass = classNames({
+      'admin-user__image': true,
+      'admin-user__image--clickable': true,
+      'admin-user__image--hovered': this.state.imgHovered
+    })
+
+    if (loading) {
+      return <div>Loading...</div>
+    }
+
+    console.log(this.state)
 
     return (
       <div id="wrapper" className="admin-user">
@@ -234,9 +306,13 @@ class AdminUser extends Component {
 						<header>
 							<span class="avatar">
                 <img
+                  className={imageClass}
                   src={!loading && (imgUrl || 'https://i.imgur.com/w1ur3Lq.jpg')}
                   alt=""
                   style={{ height: '150px', width: '150px'}}
+                  onMouseEnter={this.setImageHoveredTrue}
+                  onMouseLeave={this.setImageHoveredFalse}
+                  onClick={this.openImageModal}
                 />
               </span>
               <div className="admin-user__name mt-two mb-one">
@@ -449,6 +525,54 @@ class AdminUser extends Component {
                       style={{ color: 'white' }}
                       type="button"
                       onClick={this.updateProof}
+                    >
+                      Save
+                    </Button>
+                  </div>
+                </form>
+              </Section>
+            </Modal.Content>
+          </Modal>
+          <Modal
+            show={showImageModal}
+            onClose={this.closeImageModal}
+            closeOnEsc
+          >
+            <Modal.Content>
+              <Section style={{ background: 'white' }}>
+                <h1 className="mb-one">Update Avatar</h1>
+                <form className="admin-user__name-form" onSubmit={this.updateProof}>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <img
+                      className={imageClass}
+                      src={!loading && (imgUrl || 'https://i.imgur.com/w1ur3Lq.jpg')}
+                      alt=""
+                      style={{ height: '150px', width: '150px', borderRadius: '100%', marginRight: '50px' }}
+                    />
+
+                    <input
+                      className="avatar-form__input"
+                      type="file"
+                      onChange={this.storeFile}
+                      accept="image/*"
+                      ref={fileInput => this.fileInput = fileInput}
+                      style={{ display: 'flex' }}
+                    />
+                  </div>
+                  <div className="admin-user__name-form-buttons">
+                    <Button
+                      type="button"
+                      className="mt-one"
+                      onClick={this.closeImageModal}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      className="admin-user__save mt-one ml-one"
+                      color="link"
+                      style={{ color: 'white' }}
+                      type="button"
+                      onClick={this.updateImage}
                     >
                       Save
                     </Button>
