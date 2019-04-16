@@ -542,12 +542,12 @@ class AdminUser extends Component {
               <Section style={{ background: 'white' }}>
                 <h1 className="mb-one">Update Avatar</h1>
                 <form className="admin-user__name-form" onSubmit={this.updateProof}>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <div>
                     <img
                       className={imageClass}
                       src={!loading && (imgUrl || 'https://i.imgur.com/w1ur3Lq.jpg')}
                       alt=""
-                      style={{ height: '150px', width: '150px', borderRadius: '100%', marginRight: '50px' }}
+                      style={{ height: '150px', width: '150px', borderRadius: '100%', marginRight: '50px', marginBottom: '20px' }}
                     />
 
                     <input
