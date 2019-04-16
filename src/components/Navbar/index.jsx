@@ -64,7 +64,7 @@ export class NavbarComp extends Component {
       >
         <Navbar.Brand>
           <Navbar.Item className="identity-navbar-item">
-            Identity
+            Proofs
           </Navbar.Item>
 
           <Navbar.Burger onClick={this.toggleNavBar} />
