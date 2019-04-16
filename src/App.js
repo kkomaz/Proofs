@@ -31,14 +31,16 @@ class App extends Component {
 
     return (
       <div className="App">
-        <NavbarComp userSession={userSession} />
-        <Container>
-          {
-            userSession.isUserSignedIn() ?
-            <Routes userSession={userSession} /> :
-            <Login userSession={userSession} />
-          }
-        </Container>
+        {
+          userSession.isUserSignedIn() ?
+          <React.Fragment>
+            <NavbarComp userSession={userSession} />
+            <Container>
+              <Routes userSession={userSession} /> :
+            </Container>
+          </React.Fragment> :
+          <Login userSession={userSession} />
+        }
       </div>
     );
   }

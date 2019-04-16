@@ -27,12 +27,12 @@ export default class Login extends Component {
     const { loading } = this.state
 
     return (
-      <Card>
+      <Card style={{ zIndex: '99999' }}>
         <Card.Content>
           <Content>
             {
               loading ? <Loader /> :
-              <Button color="primary" onClick={this.handleSignIn}>
+              <Button color="primary" onClick={this.handleSignIn} style={{ color: 'white !important'}}>
                 Sign in with Blockstack
               </Button>
             }
