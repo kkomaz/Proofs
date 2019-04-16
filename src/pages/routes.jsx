@@ -3,8 +3,7 @@ import _ from 'lodash'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import UserProvider from 'components/User/UserProvider'
 import Loader from 'components/Loader'
-import AdminUsernameRoute from 'pages/admin/_username/routes'
-import UsernamePostsRoute from 'pages/_username/routes'
+import AdminUser from 'components/AdminUser'
 
 class Routes extends Component {
   state = { user: {} }
@@ -31,15 +30,15 @@ class Routes extends Component {
           <Route
             exact
             path="/"
-            render={() => <Redirect to={`/admin/${user.username}`}/>}
+            render={() => <Redirect to={`/app/${user.username}`}/>}
           />
           <Route
-            path="/admin/:username"
-            render={({ match }) => <AdminUsernameRoute match={match} />}
+            path="/app/:username"
+            render={({ match }) => <AdminUser />}
           />
           <Route
-            path="/:username/posts"
-            render={({ match }) => <UsernamePostsRoute match={match} />}
+            path="/:username"
+            render={({ match }) => <div>Hello World</div>}
           />
         </Switch>
       </UserProvider>
