@@ -54,13 +54,13 @@ export class NavbarComp extends Component {
 
     return (
       <Navbar
-        color="info"
+        color="primary"
         fixed="top"
         active={open}
       >
         <Navbar.Brand>
           <Navbar.Item>
-            <p>Blog Stacks</p>
+            <p>Identity</p>
           </Navbar.Item>
 
           <Navbar.Burger onClick={this.toggleNavBar} />
@@ -71,11 +71,8 @@ export class NavbarComp extends Component {
             {
               isSignedIn &&
               <React.Fragment>
-                <Navbar.Item onClick={this.goToAdminPosts}>
-                  Posts
-                </Navbar.Item>
                 <Navbar.Item onClick={this.goToAdminProfile}>
-                  My Profile
+                  My Public Page
                 </Navbar.Item>
                 <Navbar.Item onClick={this.handleSignOut}>
                   Sign Out

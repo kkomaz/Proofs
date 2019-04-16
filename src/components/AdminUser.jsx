@@ -273,7 +273,8 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-twitter"
                     style={{
-                      backgroundImage: _.includes(services, 'twitter') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit'
+                      backgroundImage: _.includes(services, 'twitter') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit',
+                      cursor: 'pointer'
                     }}
                   >
                     Twitter
@@ -285,7 +286,8 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-instagram"
                     style={{
-                      backgroundImage: _.includes(services, 'instagram') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit'
+                      backgroundImage: _.includes(services, 'instagram') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit',
+                      cursor: 'pointer'
                     }}
                   >
                     Instagram
@@ -293,10 +295,12 @@ class AdminUser extends Component {
                 </li>
                 <li>
                   <i
+                    onClick={() => this.openProofModal('github')}
                     href="#"
                     class="fa-github"
                     style={{
-                      backgroundImage: _.includes(services, 'github') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit'
+                      backgroundImage: _.includes(services, 'github') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit',
+                      cursor: 'pointer'
                     }}
                   >
                     Github
@@ -304,10 +308,12 @@ class AdminUser extends Component {
                 </li>
                 <li>
                   <i
+                    onClick={() => this.openProofModal('facebook')}
                     href="#"
                     class="fa-facebook"
                     style={{
-                      backgroundImage: _.includes(services, 'facebook') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit'
+                      backgroundImage: _.includes(services, 'facebook') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit',
+                      cursor: 'pointer'
                     }}
                   >
                     Facebook
@@ -315,27 +321,18 @@ class AdminUser extends Component {
                 </li>
                 <li>
                   <i
+                    onClick={() => this.openProofModal('linkedin')}
                     href="#"
                     class="fa-linkedin"
                     style={{
-                      backgroundImage: _.includes(services, 'linkedin') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit'
+                      backgroundImage: _.includes(services, 'linkedin') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit',
+                      cursor: 'pointer'
                     }}
                   >
-                    Facebook
+                    Linkedin
                   </i>
                 </li>
 							</ul>
-              <Icon
-                className="icon-pencil"
-                icon="IconPencil"
-                onClick={() => console.log('hi')}
-                size={18}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: '-15px',
-                }}
-              />
 						</footer>
 					</section>
 
@@ -360,6 +357,7 @@ class AdminUser extends Component {
                   />
                   <div className="admin-user__name-form-buttons">
                     <Button
+                      type="button"
                       className="mt-one"
                       onClick={this.onCancelNameChange}
                     >
@@ -393,6 +391,7 @@ class AdminUser extends Component {
                   />
                   <div className="admin-user__name-form-buttons">
                     <Button
+                      type="button"
                       className="mt-one"
                       onClick={this.onCancelDescriptionChange}
                     >
