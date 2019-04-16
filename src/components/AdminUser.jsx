@@ -11,6 +11,11 @@ import Button from 'react-bulma-components/lib/components/button'
 import { withRouter } from 'react-router-dom'
 import './AdminUser.scss'
 
+const usernameExists = (accounts, service) => {
+  const user = _.find(accounts, (account) => account.service === service) || {}
+  return user.identifier
+}
+
 class AdminUser extends Component {
   state = {
     accounts: [],
@@ -24,6 +29,7 @@ class AdminUser extends Component {
     showNameModal: false,
     showDescriptionModal: false,
     showProofModal: false,
+    loading: true,
   }
 
   componentDidMount = async () => {
@@ -56,6 +62,7 @@ class AdminUser extends Component {
         name: _.get(userData, 'profile.name', ''),
         inputName: _.get(userData, 'profile.name', ''),
         inputDescription: '',
+        loading: false,
       }
 
       await currentUser.userSession.putFile('identity-profile.json', JSON.stringify(params), postOptions)
@@ -70,6 +77,7 @@ class AdminUser extends Component {
         name,
         inputName,
         inputDescription,
+        loading: false,
       })
     }
   }
@@ -208,15 +216,17 @@ class AdminUser extends Component {
 
   render() {
     const {
+      accounts,
       description,
       imgUrl,
       name,
       showNameModal,
       showDescriptionModal,
       showProofModal,
+      loading,
     } = this.state
 
-    const services = _.map(this.state.accounts, 'service')
+    const services = _.map(accounts, 'service')
 
     return (
       <div id="wrapper" className="admin-user">
@@ -224,14 +234,16 @@ class AdminUser extends Component {
 						<header>
 							<span class="avatar">
                 <img
-                  src={imgUrl}
+                  src={!loading && (imgUrl || 'https://i.imgur.com/w1ur3Lq.jpg')}
                   alt=""
                   style={{ height: '150px', width: '150px'}}
                 />
               </span>
               <div className="admin-user__name mt-two mb-one">
                 <h1>
-                  {name || 'Enter name here...'}
+                  {
+                    !loading && (name || 'Enter name here...')
+                  }
                 </h1>
                 <Icon
                   className="icon-pencil"
@@ -273,7 +285,7 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-twitter"
                     style={{
-                      background: _.includes(services, 'twitter') ? '#aec3cf' : 'inherit',
+                      background: _.includes(services, 'twitter') && !_.isEmpty(usernameExists(accounts, 'twitter')) ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
@@ -286,7 +298,7 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-instagram"
                     style={{
-                      background: _.includes(services, 'instagram') ? '#aec3cf' : 'inherit',
+                      background: _.includes(services, 'instagram') && !_.isEmpty(usernameExists(accounts, 'instagram')) ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
@@ -299,7 +311,7 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-github"
                     style={{
-                      background: _.includes(services, 'github') ? '#aec3cf' : 'inherit',
+                      background: _.includes(services, 'github') && !_.isEmpty(usernameExists(accounts, 'github')) ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
@@ -312,7 +324,7 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-facebook"
                     style={{
-                      background: _.includes(services, 'facebook') ? '#aec3cf' : 'inherit',
+                      background: _.includes(services, 'facebook') && !_.isEmpty(usernameExists(accounts, 'facebook')) ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
@@ -325,7 +337,7 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-linkedin"
                     style={{
-                      background: _.includes(services, 'linkedin') ? '#aec3cf' : 'inherit',
+                      background: _.includes(services, 'linkedin') && !_.isEmpty(usernameExists(accounts, 'linkedin')) ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
@@ -436,6 +448,7 @@ class AdminUser extends Component {
                       color="link"
                       style={{ color: 'white' }}
                       type="button"
+                      onClick={this.updateProof}
                     >
                       Save
                     </Button>

@@ -254,7 +254,7 @@ class User extends Component {
 							<ul class="icons admin-user__icons">
                 {
                   _.map(this.state.accounts, (account) => {
-                    if (account.service !== 'bitcoin') {
+                    if (account.service !== 'bitcoin' && !_.isEmpty(account.identifier)) {
                       return (
                         <li>
                           <a
