@@ -255,6 +255,23 @@ class User extends Component {
                 {
                   _.map(this.state.accounts, (account) => {
                     if (account.service !== 'bitcoin' && account.service !== 'hackerNews' && !_.isEmpty(account.identifier)) {
+                      if (account.service === 'linkedIn') {
+                        return (
+                          <li>
+                            <a
+                              href={this.urlRoute(account)}
+                              target="_blank"
+                              rel='noreferrer noopener'
+                              class={`fa-linkedin`}
+                              style={{
+                                background: '#aec3cf',
+                              }}
+                              >
+                              Twitter
+                            </a>
+                          </li>
+                        )
+                      }
                       return (
                         <li>
                           <a

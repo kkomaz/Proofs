@@ -409,11 +409,11 @@ class AdminUser extends Component {
                 </li>
                 <li>
                   <i
-                    onClick={() => this.openProofModal('linkedin')}
+                    onClick={() => this.openProofModal('linkedIn')}
                     href="#"
                     class="fa-linkedin"
                     style={{
-                      background: _.includes(services, 'linkedin') && !_.isEmpty(usernameExists(accounts, 'linkedin')) ? '#aec3cf' : 'inherit',
+                      background: _.includes(services, 'linkedIn') && !_.isEmpty(usernameExists(accounts, 'linkedIn')) ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
