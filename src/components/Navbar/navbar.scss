@@ -1,0 +1,9 @@
+.navbar-end {
+  .navbar-item {
+    color: white;
+
+    &:hover {
+      color: black;
+    }
+  }
+}

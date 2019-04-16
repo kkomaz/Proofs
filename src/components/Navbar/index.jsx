@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Navbar } from 'react-bulma-components'
 import { withRouter } from 'react-router-dom'
+import './navbar.scss'
 
 export class NavbarComp extends Component {
   state = {
@@ -54,13 +55,16 @@ export class NavbarComp extends Component {
 
     return (
       <Navbar
-        color="primary"
         fixed="top"
         active={open}
+        style={{
+          background: '#aec3cf',
+          color: 'white'
+        }}
       >
         <Navbar.Brand>
-          <Navbar.Item>
-            <p>Identity</p>
+          <Navbar.Item className="identity-navbar-item">
+            Identity
           </Navbar.Item>
 
           <Navbar.Burger onClick={this.toggleNavBar} />
@@ -71,13 +75,13 @@ export class NavbarComp extends Component {
             {
               isSignedIn &&
               <React.Fragment>
-                <Navbar.Item onClick={this.goToAdminPage}>
+                <Navbar.Item onClick={this.goToAdminPage} className="identity-navbar-item">
                   Admin Page
                 </Navbar.Item>
-                <Navbar.Item onClick={this.goToPublicPage}>
+                <Navbar.Item onClick={this.goToPublicPage} className="identity-navbar-item">
                   Public Page
                 </Navbar.Item>
-                <Navbar.Item onClick={this.handleSignOut}>
+                <Navbar.Item onClick={this.handleSignOut} className="identity-navbar-item">
                   Sign Out
                 </Navbar.Item>
               </React.Fragment>

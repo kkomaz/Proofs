@@ -263,7 +263,7 @@ class User extends Component {
                             rel='noreferrer noopener'
                             class={`fa-${account.service}`}
                             style={{
-                              backgroundImage: '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)',
+                              background: '#aec3cf',
                             }}
                             >
                             Twitter

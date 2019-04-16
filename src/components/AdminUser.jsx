@@ -273,7 +273,7 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-twitter"
                     style={{
-                      backgroundImage: _.includes(services, 'twitter') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit',
+                      background: _.includes(services, 'twitter') ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
@@ -286,7 +286,7 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-instagram"
                     style={{
-                      backgroundImage: _.includes(services, 'instagram') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit',
+                      background: _.includes(services, 'instagram') ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
@@ -299,7 +299,7 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-github"
                     style={{
-                      backgroundImage: _.includes(services, 'github') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit',
+                      background: _.includes(services, 'github') ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
@@ -312,7 +312,7 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-facebook"
                     style={{
-                      backgroundImage: _.includes(services, 'facebook') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit',
+                      background: _.includes(services, 'facebook') ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
@@ -325,7 +325,7 @@ class AdminUser extends Component {
                     href="#"
                     class="fa-linkedin"
                     style={{
-                      backgroundImage: _.includes(services, 'linkedin') ? '-webkit-linear-gradient(45deg, #F86754 0%, #fabe61 100%)' : 'inherit',
+                      background: _.includes(services, 'linkedin') ? '#aec3cf' : 'inherit',
                       cursor: 'pointer'
                     }}
                   >
