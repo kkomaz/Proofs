@@ -1,0 +1,73 @@
+.admin-user {
+  &__name,
+  &__description,
+  &__footer {
+    position: relative;
+
+    .icon-pencil {
+      display: none;
+    }
+
+    &:hover {
+      .icon-pencil {
+        display: block;
+      }
+    }
+  }
+
+  &__edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &__save {
+    color: white !important;
+  }
+
+  &__name-form-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+ul.icons li i {
+  text-decoration: none;
+  position: relative;
+  display: block;
+  width: 3.75em;
+  height: 3.75em;
+  border-radius: 100%;
+  border: solid 1px #c8cccf;
+  line-height: 3.75em;
+  overflow: hidden;
+  text-align: center;
+  text-indent: 3.75em;
+  white-space: nowrap;
+}
+
+ul.icons li i:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  font-size: 1.85rem;
+  line-height: inherit;
+  text-align: center;
+  text-indent: 0;
+}
+
+ul.icons li i:before {
+  color: #ffffff;
+  text-shadow: 1.25px 0px 0px #c8cccf, -1.25px 0px 0px #c8cccf, 0px 1.25px 0px #c8cccf, 0px -1.25px 0px #c8cccf;
+}
+
+ul.icons li i:before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: none !important;
+}

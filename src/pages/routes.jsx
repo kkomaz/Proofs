@@ -34,7 +34,9 @@ class Routes extends Component {
           />
           <Route
             path="/app/:username"
-            render={({ match }) => <AdminUser />}
+            render={({ match }) =>
+              <AdminUser match={match} />
+            }
           />
           <Route
             path="/:username"
